@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { useFetch } from './utils/useFetch'
@@ -7,6 +7,9 @@ import Loading from "./components/Loading";
 function App() {
 
   const { data, loading } = useFetch();
+
+  const [followersList, setFollowersList] = useState(data[0])
+  console.log(data[0]);
   return (
     <main>
       <Navbar />
@@ -16,7 +19,7 @@ function App() {
       </div>
       <section className="followers">
         {loading ? <Loading /> : <div className="container">
-          {data.map(item => {
+          {followersList.map(item => {
             return <SingleFollower key={item.id} {...item} />
           })}
         </div>}

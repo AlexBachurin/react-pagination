@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-
+import { paginate } from "./utils";
 const url = 'https://api.github.com/users/john-smilga/followers?per_page=100'
 
 //custom hook to fetch data
@@ -11,8 +11,9 @@ export const useFetch = () => {
     const getData = async () => {
         const response = await fetch(url);
         const items = await response.json();
-        console.log(items);
-        setData(items);
+        //use paginate function before we set it to state
+        const paginateItems = paginate(items);
+        setData(paginateItems);
         setLoading(false);
     }
 

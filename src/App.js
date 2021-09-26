@@ -12,6 +12,10 @@ function App() {
 
   //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
 
+  //var for pages list
+  const pagesList = Array.from({ length: followersList.length });
+
+  console.log(pagesList)
   useEffect(() => {
     if (loading) return
     setFollowersList(data[0])
@@ -31,6 +35,11 @@ function App() {
             return <SingleFollower key={item.id} {...item} />
           })}
         </div>}
+        <div className="page-container">
+          {pagesList.map((item, index) => {
+            return <button>{index + 1}</button>
+          })}
+        </div>
       </section>
       <Footer />
     </main>

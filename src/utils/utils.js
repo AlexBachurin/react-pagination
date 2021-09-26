@@ -2,7 +2,7 @@
 
 export const paginate = (data) => {
     //how many users we want to show on page
-    const itemsOnPage = 10;
+    const itemsOnPage = 3;
     //now we need to create an array of arrays from data we get in this function so if it was [1,2,3,4,5,6,7,8,9,10]
     //we transform it into [[1,2,3],[4,5,6],[7,8,9],[10]] if we want to show 3 items on 1 page
 

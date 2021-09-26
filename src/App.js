@@ -15,8 +15,7 @@ function App() {
   //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
 
   //var for pages list
-  const pagesList = Array.from({ length: followersList.length });
-
+  const pagesList = Array.from({ length: data.length });
   useEffect(() => {
     if (loading) return
     setFollowersList(data[value])
@@ -76,7 +75,7 @@ function App() {
             // add active class to button if index match value
             //classname for button
             let btnClass = 'pagination-btn';
-            if (index == value) {
+            if (index === value) {
               btnClass += ' active-btn'
             }
 

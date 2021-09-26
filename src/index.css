@@ -228,7 +228,7 @@ textarea {
   justify-content: center;
   flex-wrap: wrap;
 }
-.page-container button {
+.pagination-btn {
   width: 2rem;
   height: 2rem;
   background: var(--clr-main);
@@ -237,6 +237,23 @@ textarea {
   cursor: pointer;
   margin: 0.5rem;
   transition: all 0.3s linear;
+}
+.active-btn {
+  background: #063251;
+  color: #fff;
+}
+.prev-btn,
+.next-btn {
+  background: transparent;
+  border-color: transparent;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+  letter-spacing: var(--spacing);
+  margin: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
 }
 @media screen and (min-width: 775px) {
   .btn-container {

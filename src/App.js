@@ -55,6 +55,8 @@ function App() {
     }
   }
 
+
+
   return (
     <main>
       <Navbar />
@@ -71,7 +73,14 @@ function App() {
         <div className="page-container">
           <button onClick={prevPage} className="prev-btn">prev</button>
           {pagesList.map((item, index) => {
-            return <button onClick={handlePageClick} key={index}>{index + 1}</button>
+            // add active class to button if index match value
+            //classname for button
+            let btnClass = 'pagination-btn';
+            if (index == value) {
+              btnClass += ' active-btn'
+            }
+
+            return <button className={btnClass} onClick={handlePageClick} key={index}>{index + 1}</button>
           })}
           <button onClick={nextPage} className="next-btn">next</button>
         </div>

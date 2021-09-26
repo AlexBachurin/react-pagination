@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { useFetch } from './utils/useFetch'
@@ -8,8 +8,16 @@ function App() {
 
   const { data, loading } = useFetch();
 
-  const [followersList, setFollowersList] = useState(data[0])
-  console.log(data[0]);
+  const [followersList, setFollowersList] = useState([]);
+
+  //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
+
+  useEffect(() => {
+    if (loading) return
+    setFollowersList(data[0])
+
+  }, [loading])
+
   return (
     <main>
       <Navbar />

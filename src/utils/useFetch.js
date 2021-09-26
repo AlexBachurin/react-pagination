@@ -13,8 +13,10 @@ export const useFetch = () => {
         const items = await response.json();
         //use paginate function before we set it to state
         const paginateItems = paginate(items);
+
         setData(paginateItems);
         setLoading(false);
+
     }
 
     useEffect(() => {

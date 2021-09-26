@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { useFetch } from './utils/useFetch'
 import SingleFollower from "./components/SingleFollower";
 import Loading from "./components/Loading";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
 
   const { data, loading } = useFetch();
@@ -12,10 +13,11 @@ function App() {
   const [followersList, setFollowersList] = useState([]);
   //state for value of current clicked page
   const [value, setValue] = useState(0)
-  //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
 
   //var for pages list
   const pagesList = Array.from({ length: data.length });
+
+  //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
   useEffect(() => {
     if (loading) return
     setFollowersList(data[value])
@@ -57,35 +59,39 @@ function App() {
 
 
   return (
-    <main>
-      <Navbar />
-      <div className="section-title">
-        <h1>Pagination</h1>
-        <div className="underline"></div>
-      </div>
-      <section className="followers">
-        {loading ? <Loading /> : <div className="container">
-          {followersList.map(item => {
-            return <SingleFollower key={item.id} {...item} />
-          })}
-        </div>}
-        <div className="page-container">
-          <button onClick={prevPage} className="prev-btn">prev</button>
-          {pagesList.map((item, index) => {
-            // add active class to button if index match value
-            //classname for button
-            let btnClass = 'pagination-btn';
-            if (index === value) {
-              btnClass += ' active-btn'
-            }
+    <Router>
+      <Route path="/" >
+        <main>
+          <Navbar />
+          <div className="section-title">
+            <h1>Pagination</h1>
+            <div className="underline"></div>
+          </div>
+          <section className="followers">
+            {loading ? <Loading /> : <div className="container">
+              {followersList.map(item => {
+                return <SingleFollower key={item.id} {...item} />
+              })}
+            </div>}
+            <div className="page-container">
+              <button onClick={prevPage} className="prev-btn">prev</button>
+              {pagesList.map((item, index) => {
+                // add active class to button if index match value
+                //classname for button
+                let btnClass = 'pagination-btn';
+                if (index === value) {
+                  btnClass += ' active-btn'
+                }
 
-            return <button className={btnClass} onClick={handlePageClick} key={index}>{index + 1}</button>
-          })}
-          <button onClick={nextPage} className="next-btn">next</button>
-        </div>
-      </section>
-      <Footer />
-    </main>
+                return <button className={btnClass} onClick={handlePageClick} key={index}>{index + 1}</button>
+              })}
+              <button onClick={nextPage} className="next-btn">next</button>
+            </div>
+          </section>
+          <Footer />
+        </main>
+      </Route>
+    </Router>
   );
 }
 

@@ -9,13 +9,17 @@ export const useFetch = () => {
     const [loading, setLoading] = useState(true);
 
     const getData = async () => {
-        const response = await fetch(url);
-        const items = await response.json();
-        //use paginate function before we set it to state
-        const paginateItems = paginate(items);
+        try {
+            const response = await fetch(url);
+            const items = await response.json();
+            //use paginate function before we set it to state
+            const paginateItems = paginate(items);
 
-        setData(paginateItems);
-        setLoading(false);
+            setData(paginateItems);
+            setLoading(false);
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 

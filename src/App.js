@@ -8,19 +8,29 @@ function App() {
 
   const { data, loading } = useFetch();
 
+  //state for 1 page items from fetch data
   const [followersList, setFollowersList] = useState([]);
-
+  //state for value of current clicked page
+  const [value, setValue] = useState(0)
   //only setFellowersList when we are not loading and value of loading changes, else we wont get proper result
 
   //var for pages list
   const pagesList = Array.from({ length: followersList.length });
 
-  console.log(pagesList)
   useEffect(() => {
     if (loading) return
-    setFollowersList(data[0])
+    setFollowersList(data[value])
 
-  }, [loading])
+  }, [loading, value, data])
+
+  //click handle, when we clicking on page we grab it textcontent and set it to value state
+  //so if we clicked on page 5, value will be 5
+  const handlePageClick = (e) => {
+    console.log(e.target.textContent);
+    //transform to number, because we need textContent of clicked page - 1 in our value
+    const pageNumber = Number(e.target.textContent);
+    setValue(pageNumber - 1)
+  }
 
   return (
     <main>
@@ -37,7 +47,7 @@ function App() {
         </div>}
         <div className="page-container">
           {pagesList.map((item, index) => {
-            return <button>{index + 1}</button>
+            return <button onClick={handlePageClick} key={index}>{index + 1}</button>
           })}
         </div>
       </section>

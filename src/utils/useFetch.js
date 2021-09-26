@@ -9,10 +9,10 @@ export const useFetch = () => {
     const [loading, setLoading] = useState(true);
 
     const getData = async () => {
-        const response = fetch(url);
-        const data = await response.json;
-
-        setData(data);
+        const response = await fetch(url);
+        const items = await response.json();
+        console.log(items);
+        setData(items);
         setLoading(false);
     }
 

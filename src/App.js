@@ -36,7 +36,7 @@ function App() {
     console.log(value)
     //check if value is 0 when navigate to last page
     if (value === 0) {
-      setValue(followersList.length - 1);
+      setValue(pagesList.length - 1);
     } else {
       setValue(value - 1);
     }
@@ -46,7 +46,7 @@ function App() {
   const nextPage = () => {
     //check if we on last page
     console.log(value)
-    if (value === followersList.length - 1) {
+    if (value === pagesList.length - 1) {
       setValue(0)
     }
     else {

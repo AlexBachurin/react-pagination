@@ -32,6 +32,29 @@ function App() {
     setValue(pageNumber - 1)
   }
 
+  //next prev page handlers
+  const prevPage = () => {
+    console.log(value)
+    //check if value is 0 when navigate to last page
+    if (value === 0) {
+      setValue(followersList.length - 1);
+    } else {
+      setValue(value - 1);
+    }
+
+  }
+
+  const nextPage = () => {
+    //check if we on last page
+    console.log(value)
+    if (value === followersList.length - 1) {
+      setValue(0)
+    }
+    else {
+      setValue(value + 1);
+    }
+  }
+
   return (
     <main>
       <Navbar />
@@ -46,9 +69,11 @@ function App() {
           })}
         </div>}
         <div className="page-container">
+          <button onClick={prevPage} className="prev-btn">prev</button>
           {pagesList.map((item, index) => {
             return <button onClick={handlePageClick} key={index}>{index + 1}</button>
           })}
+          <button onClick={nextPage} className="next-btn">next</button>
         </div>
       </section>
       <Footer />

@@ -166,3 +166,17 @@ textarea {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
+.footer-descr {
+  padding: 0 4rem;
+  display: flex;
+  justify-content: center;
+}
+.footer p {
+  color: #fff;
+  margin-right: 20px;
+  text-transform: capitalize;
+}
+.footer-icon {
+  color: #fff;
+  font-size: 1.3rem;
+}
